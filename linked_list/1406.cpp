@@ -29,10 +29,7 @@ int main(void)
         else if (cmd == 'B')
         {
             if (cur != L.begin())
-            {
-                cur--;
-                cur = L.erase(cur);
-            }
+                cur = L.erase(--cur);
         }
         else if (cmd == 'L')
         {
