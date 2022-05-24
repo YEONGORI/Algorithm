@@ -26,21 +26,12 @@ int main(void)
             cin >> c;
             L.insert(cur, c);
         }
-        else if (cmd == 'B')
-        {
-            if (cur != L.begin())
-                cur = L.erase(--cur);
-        }
-        else if (cmd == 'L')
-        {
-            if (cur != L.begin())
-                cur--;
-        }
-        else if (cmd == 'D')
-        {
-            if (cur != L.end())
-                cur++;
-        }
+        else if (cmd == 'B' && cur != L.begin())
+            cur = L.erase(--cur);
+        else if (cmd == 'L' && cur != L.begin())
+            cur--;
+        else if (cmd == 'D' && cur != L.end())
+            cur++;
     }
 
     for (auto l : L)
