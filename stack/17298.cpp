@@ -8,29 +8,31 @@ int main(void)
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int n, x;
-    stack<int> s1, s2;
-
+    int n, h;
     cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> x;
-        s1.push(x);
-    }
+    int arr[n];
+    stack<int> S, K;
 
     for (int i = 0; i < n; i++)
     {
-        while (!s2.empty() && s2.top() <= s1.top())
-            s2.pop();
-        if (s2.empty())
-            cout << -1 << ' ';
+        cin >> h;
+        K.push(h);
+    }
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        while (!S.empty() && K.top() >= S.top())
+            S.pop();
+        if (S.empty())
+            arr[i] = -1;
         else
-            cout << s2.top() << ' ';
+            arr[i] = S.top();
 
-        s2.push(s1.top());
-        s1.pop();
+        S.push(K.top());
+        K.pop();
     }
 
-    // cout << -1 << '\n';
+    for (int i : arr)
+        cout << i << ' ';
     return 0;
 }
