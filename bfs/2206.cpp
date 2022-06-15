@@ -7,9 +7,9 @@ int board[1002][1002];
 int dist[1002][1002];
 int dx[4] = {-1, 1, 0, 0};
 int dy[4] = {0, 0, -1, 1};
-int n, m, crash;
+int n, m;
 
-int bfs()
+int bfs(int &is_jump)
 {
     queue<tuple<int, int, int>> Q;
 
@@ -30,8 +30,8 @@ int bfs()
                 continue;
             if (dist[nx][ny] >= 0)
                 continue;
-            if (board[nx][ny] && crash == 0)
-            {
+            if (board[nx][ny] && is_jump == 0)
+            { 
                 int nx2 = x + dx[dir] * 2;
                 int ny2 = y + dy[dir] * 2;
 
@@ -39,16 +39,20 @@ int bfs()
                     continue;
                 else
                 {
-                    crash = 1;
+                    // 마지막 벽을 부숴야만 이동할 수 있는 경우는
+                    // 점프로는 해결이 안됨
+                    // 
+                    is_jump = 1;
                     nx = nx2;
                     ny = ny2;
                     dist[nx2][ny2] += 1;
+                    // 여기까지
                 }
             }
             if (board[nx][ny])
                 continue;
 
-            Q.push(make_tuple(nx, ny, crash));
+            Q.push(make_tuple(nx, ny, is_jump));
             dist[nx][ny] = dist[x][y] + 1;
         }
     }
@@ -83,12 +87,12 @@ int main(void)
         fill(dist[i], dist[i] + m, -1);
 
     /* bfs */
-    int max = -1;
-    // while ()
-    // {
-    //     max = bfs();
-    // }
-    max = bfs();
+    int max = -1, is_jump = 1;
+    while (is_jump != 0)
+    {
+        is_jump = 0;
+        max = bfs(is_jump);
+    }
     cout << max;
 }
 
