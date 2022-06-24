@@ -2,16 +2,17 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+using ll = long long;
 
-int recur(long long a, long long b, long long c)
+ll recur(ll a, ll b, ll c)
 {
     if (b == 1)
         return a % c;
-    long long tmp = recur(a, b / 2, c);
-    tmp = tmp * tmp % c;
+    ll val = recur(a, b / 2, c);
+    val = val * val % c;
     if (b % 2 == 0)
-        return tmp;
-    return tmp * a * c;
+        return val;
+    return val * a * c;
 }
 
 int main(void)
@@ -19,7 +20,7 @@ int main(void)
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    long long a, b, c;
+    ll a, b, c;
     cin >> a >> b >> c;
 
     cout << recur(a, b, c);
