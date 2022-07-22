@@ -1,5 +1,7 @@
 // 단지번호붙이기
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
+#include <stack>
 
 using namespace std;
 
