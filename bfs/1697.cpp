@@ -1,5 +1,7 @@
 // 숨바꼭질
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <queue>
+#include <iostream>
 
 using namespace std;
 

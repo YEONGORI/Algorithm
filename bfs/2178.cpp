@@ -1,5 +1,7 @@
 // 미로 탐색
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <queue>
+#include <iostream>
 
 using namespace std;
 
