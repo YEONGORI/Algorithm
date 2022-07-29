@@ -17,7 +17,7 @@ void func(int q) {
 		int j;
 		for (j = 1; j < q; j++)
 			if (board[q] == board[q - j] || board[q] == board[q - j] - j || board[q] == board[q - j] + j)
-				break;;
+				break;
 		if (j != q) continue;
 		func(q + 1);
 	}
