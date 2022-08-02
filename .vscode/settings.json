@@ -4,6 +4,9 @@
         "iostream": "cpp",
         "iosfwd": "cpp",
         "tuple": "cpp",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "ios": "cpp",
+        "algorithm": "cpp",
+        "utility": "cpp"
     }
 }
