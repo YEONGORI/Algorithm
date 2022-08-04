@@ -1,132 +1,62 @@
 // 치킨 배달
-#include <iostream>
-#include <string.h>
-#include <vector>
 #include <algorithm>
-#include <queue>
-
+#include <cmath>
+#include <iostream>
+#include <vector>
 using namespace std;
 
-pair<int, int> town[60][60];
-vector<int> V;
+struct Pos {
+  int x, y;
+};
+int N, M;
+int MIN = 2147483640;
+bool selected[13];
+vector<Pos> house;
+vector<Pos> chicken;
+vector<Pos> picked;
 
-int c_town[60][60];
-int chicken[20];
-
-int dx[4] = {-1, 1, 0, 0};
-int dy[4] = {0, 0, -1, 1};
-
-int n, m;
-
-int check(int nx, int ny)
-{
-    for (int i = 1; i <= m; i++)
-    {
-        if (nx * 5 + ny == chicken[i])
-            return (1);
-    }
-    return (0);
+void get_distance(void) {
+  int res = 0;
+  for (int i = 0; i < (int)house.size(); i++) {
+    int tmp = 2147483640;
+    for (int j = 0; j < (int)picked.size(); j++)
+      tmp = min(
+          tmp, (abs(house[i].x - picked[j].x) + abs(house[i].y - picked[j].y)));
+    res += tmp;
+  }
+  MIN = min(MIN, res);
 }
 
-int bfs(int i, int j)
-{
-    queue<pair<int, int>> Q;
-    int dist[60][60];
-    int res = 1000;
-
-    for (int q = 0; q < n; q++)
-        for (int w = 0; w < n; w++)
-            dist[q][w] = -1;
-
-    Q.push({i, j});
-    dist[i][j] = 0;
-    while (!Q.empty())
-    {
-        int x = Q.front().first;
-        int y = Q.front().second;
-        Q.pop();
-        for (int d = 0; d < 4; d++)
-        {
-            int nx = x + dx[d];
-            int ny = y + dy[d];
-            if (nx < 0 || nx >= n || ny < 0 || ny >= n)
-                continue;
-            if (dist[nx][ny] >= 0)
-                continue;
-            dist[nx][ny] = dist[x][y] + 1;
-            Q.push({nx, ny});
-            if (town[nx][ny].second == 2 && dist[nx][ny] < res && check(nx, ny))
-                res = dist[nx][ny];
-        }
-    }
-    return (res);
+void pick_chicken(int x, int k) {
+  if (k == M)
+    get_distance();
+  for (int i = x; i < (int)chicken.size(); i++) {
+    if (selected[i])
+      continue;
+    selected[i] = 1;
+    picked.push_back({chicken[i].x, chicken[i].y});
+    pick_chicken(i, k + 1);
+    selected[i] = 0;
+    picked.pop_back();
+  }
 }
 
-int get_distance(void)
-{
-    int total = 0;
+int main(void) {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
 
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            if (town[i][j].second == 1)
-                total += bfs(i, j);
-        }
+  cin >> N >> M;
+  int tmp;
+  for (int i = 0; i < N; i++) {
+    for (int j = 0; j < N; j++) {
+      cin >> tmp;
+      if (tmp == 1)
+        house.push_back({i, j});
+      if (tmp == 2)
+        chicken.push_back({i, j});
     }
-    return (total);
+  }
+  pick_chicken(0, 0);
+  cout << MIN;
+  return (0);
 }
-
-void pick_chicken(int k)
-{
-    if (k == m + 1)
-    {
-        V.push_back(get_distance());
-        return;
-    }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            if (town[i][j].first > chicken[k - 1] && town[i][j].second == 2)
-            {
-                chicken[k] = town[i][j].first;
-                pick_chicken(k + 1);
-            }
-        }
-    }
-}
-
-int main(void)
-{
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-
-    cin >> n >> m;
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            cin >> town[i][j].second;
-            town[i][j].first = i * 5 + j;
-        }
-    }
-    memset(chicken, -1, sizeof(chicken));
-    pick_chicken(1);
-
-    V.push_back(10000);
-    cout << *min_element(V.begin(), V.end());
-
-    return (0);
-}
-
-/*
-
-5 1
-1 2 0 2 1
-1 2 0 2 1
-1 2 0 2 1
-1 2 0 2 1
-1 2 0 2 1
-*/

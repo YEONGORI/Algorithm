@@ -7,6 +7,17 @@
         "stdlib.h": "c",
         "ios": "cpp",
         "algorithm": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "__config": "cpp",
+        "__hash_table": "cpp",
+        "deque": "cpp",
+        "iterator": "cpp",
+        "locale": "cpp",
+        "memory": "cpp",
+        "queue": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "__locale": "cpp"
     }
 }
