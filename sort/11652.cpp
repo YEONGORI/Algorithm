@@ -34,8 +34,8 @@ void merge_sort(int st, int en) {
 /* end sort */
 
 int cnt = 0;                        // 현재 보고 있는 수가 몇 번 등장했는지
-long long mxval = -(111 << 62) -1;  // 현재까지 가장 많이 등장한 수의 값
-int mxcnt;                          // 현재까지 가장 많이 등장한 수의 등장 횟수
+long long mxval = -(4.611686e+18);      // 현재까지 가장 많이 등장한 수의 값
+int mxcnt = 0;                          // 현재까지 가장 많이 등장한 수의 등장 횟수
 
 int main(void) {
     ios::sync_with_stdio(0);
@@ -45,8 +45,18 @@ int main(void) {
     for (int i=0; i<n; i++)
         cin >> num[i];
     merge_sort(0, n);
-    
-
-    for (int i=0; i<n; i++) cout << num[i] << ' ';
+    for (int i=0;i<n;i++) {
+        if (i == 0 || num[i-1]==num[i])
+            cnt++;
+        else {
+            if (mxcnt < cnt) {
+                mxcnt = cnt;
+                mxval = num[i-1];
+            }
+            cnt=1;
+        }
+    }
+    if (mxcnt < cnt) mxval = num[n-1];
+    cout << mxval;
     return (0);
 }
