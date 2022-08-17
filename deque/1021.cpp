@@ -44,7 +44,5 @@ int main(void)
                 total += cnt1;
         }
     }
-    
     cout << total << '\n';
-    return (0);
 }
