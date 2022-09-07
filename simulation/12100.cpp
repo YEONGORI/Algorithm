@@ -47,5 +47,6 @@ int main(void)
     while (true)
     {
         copy(&board[0][0], &board[0][0] + 484, &b_cpy[0][0]);
+        
     }
 }

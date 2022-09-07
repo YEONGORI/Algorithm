@@ -32,7 +32,7 @@ int main(void)
                 mini++;
         }
     }
-
+    
     for (int tmp = 0; tmp < (1 << (2 * cctv.size())); tmp++)
     {
         copy(&room[0][0], &room[0][0] + 100, &vis[0][0]);
