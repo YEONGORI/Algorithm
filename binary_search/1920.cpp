@@ -40,3 +40,20 @@ int main(void)
         cout << f_check(tmp) << '\n';
     }
 }
+
+// int main(void)
+// {
+//     ios::sync_with_stdio(0);
+//     cin.tie(0);
+//     cin >> n;
+//     for (int i = 0; i < n; i++)
+//         cin >> A[i];
+//     sort(A, A + n);
+//     cin >> m;
+//     while (m--)
+//     {
+//         int t;
+//         cin >> t;
+//         cout << binary_search(A, A + n, t) << '\n';
+//     }
+// }
