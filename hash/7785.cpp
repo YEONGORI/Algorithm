@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+// 회사에 있있는  사사람람
+#include <iostream>
+#include <unordered_set>
+#include <vector>
 using namespace std;
 
 unordered_set<string> s;
