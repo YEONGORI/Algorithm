@@ -5,6 +5,7 @@ using namespace std;
 void set_example()
 {
     set<int> s;
+
     s.insert(-10);
     cout << s.erase(100) << '\n';
     cout << s.erase(20) << '\n';
