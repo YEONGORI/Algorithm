@@ -39,6 +39,7 @@ void top_pop(void)
             p = max_c;
         }
     }
+
     else
         cout << 0 << '\n';
 }
