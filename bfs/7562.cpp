@@ -26,8 +26,8 @@ int main(void)
         Q.push({pos_x, pos_y});
         dist[pos_x][pos_y] = 0;
 
-        while (!Q.empty())
-        {
+        while (!Q.empty()) {
+
             auto cur = Q.front();
             Q.pop();
             for (int dir = 0; dir < 8; dir++)
