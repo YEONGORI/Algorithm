@@ -4,7 +4,7 @@
 using namespace std;
 
 int solution(vector<int> queue1, vector<int> queue2)
-{
+{ // erase가 로그시간이여서 시간초과 걸렸음
     unsigned long long total = 0, t1 = 0, t2 = 0;
     int cnt = -1, i1 = 0, i2 = 0;
     int maxCnt = queue1.size() * 3;
