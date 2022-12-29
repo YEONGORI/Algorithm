@@ -22,6 +22,5 @@ int solution(int m, int n, vector<vector<int>> puddles) {
             arr[i][j] = (a + b) % 1000000007;
         }
     }
-    
     return arr[m][n] % 1000000007;
 }
