@@ -1,4 +1,3 @@
-// 적록색약
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -22,16 +21,14 @@ void bfs(int i, int j)
     {
         auto cur = Q.front();
         Q.pop();
-        for (int dir = 0; dir < 4; dir++)
-        {
+        for (int dir = 0; dir < 4; dir++) {
             int nx = cur.X + dx[dir];
             int ny = cur.Y + dy[dir];
 
             if (nx < 0 || nx >= n || ny < 0 || ny >= n)
                 continue;
-            if (vis[nx][ny] || board[nx][ny] != c)
+            if (vis[nx][ny] == 1 || board[nx][ny] != c)
                 continue;
-
             vis[nx][ny] = 1;
             Q.push({nx, ny});
         }
