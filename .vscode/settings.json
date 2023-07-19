@@ -28,5 +28,9 @@
 		"stack": "cpp",
 		"string_view": "cpp",
 		"unordered_set": "cpp"
-	}
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "python.formatting.provider": "none"
 }
