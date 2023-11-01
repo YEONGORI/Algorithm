@@ -55,8 +55,7 @@ def solution(grid, d, k):
         for j in range(n*m):
             answer += mat[i][j]
             answer %= mod
-    
+            
     return answer
-    
     
 print(solution([[1,4,0], [4,2,7], [2,7,0]], [3,-2,5], 1)) # answer is 5
