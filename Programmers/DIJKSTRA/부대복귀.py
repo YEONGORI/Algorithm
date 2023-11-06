@@ -27,6 +27,4 @@ def solution(n, roads, sources, destination):
     for s in sources:
         result.append(dist[s])
         
-    
-
     return result
