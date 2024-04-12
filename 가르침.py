@@ -1,3 +1,4 @@
+
 from itertools import combinations
 
 def word_to_bit(word):
@@ -25,79 +26,32 @@ else:
         answer = max(answer, cnt)
     print(answer)
 
+
 '''
+
+from itertools import combinations
+
 n, k = map(int, input().split())
-max_cnt = 0
+words = [input().rstrip() for _ in range(n)]
 
-strings = []
-alpa = ['a', 'n', 't', 'i', 'c']
-for _ in range(n):
-    str = input()
-    strings.append(str)
-    for i in range(4, len(str) - 4):
-        if str[i] not in alpa:
-            alpa.append(str[i])
-
-vis = [False for _ in range(len(alpa))]
-for i in range(6):
-    vis[i] = True
-
-def cal(cur):
-    cnt = 0
-    for str in strings:
-        read = True
-        for c in str:
-            if c not in cur:
-                read = False
-        if read:
-            cnt += 1
-    return cnt
-
-def bt(depth, vis, cur:list):
-    if depth == k:
-        global max_cnt
-        max_cnt = max(max_cnt, cal(cur))
-        return 
-    
-    for i in range(5, len(alpa)):
-        if not vis[i]:
-            vis[i] = True
-            cur.append(alpa[i])
-            bt(depth + 1, vis, cur)
-            vis[i] = False
-            cur.pop()
+antic = {'a', 'n', 't', 'i', 'c'}
+alpha = [chr(i + 97) for i in range(26) if chr(i + 97) not in antic]
 
 if k < 5:
     print(0)
 else:
-    bt(5, vis, ['a', 'n', 't', 'r', 'i', 'c'])
-    print(max_cnt)
-'''
+    max_answer = 0
+    for lst in combinations(alpha, k-5):
+        answer = n
+        d = dict.fromkeys(lst)
+        for word in words:
+            word = word[4:-4]
+            for c in word:
+                if (c not in d) and (c not in antic):
+                    answer -=1
+                    break
 
-'''
-from itertools import combinations
+        max_answer = max(answer, max_answer)
 
-n, k = map(int, input().split())
-
-strings = []
-alpa = ['a', 'n', 't', 'r', 'i', 'c']
-for _ in range(n):
-    str = input()
-    strings.append(str)
-    for i in range(4, len(str) - 4):
-        if str[i] not in alpa:
-            alpa.append(str[i])
-
-max_answer = 0
-for lst in combinations(alpa, k):
-    answer = n
-    for str in strings:
-        for c in str:
-            if c not in lst:
-                answer -=1
-                break
-
-    max_answer = max(answer, max_answer)
-
-print(max_answer)
+    print(max_answer)
 '''
